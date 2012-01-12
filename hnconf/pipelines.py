@@ -7,7 +7,7 @@ import os
 
 #Something hacky
 if os.getcwd() == "/home/shadowsun7/webapps/hnconf/htdocs":
-    path = os.path.join("/home/shadowsun7/webapps/hnconf_serve/htdocs/", "index.html")
+    path = os.path.join("/home/shadowsun7/webapps/hnconf_serve/", "index.html")
 else:
     path = os.path.join(os.getcwd(), "index.html")
 

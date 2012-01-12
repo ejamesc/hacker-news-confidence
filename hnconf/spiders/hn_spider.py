@@ -44,16 +44,23 @@ class HNSpider(CrawlSpider):
 		# returns <a> tags
 		comments = hxs.select("/html/body/center[1]/table[1]/tr[3]/td[1]/table[1]/tr/td[contains(concat(' ',@class,' '),' subtext ')]/a[2]").extract()
 
+		selfpost = re.compile('^item\?id=\d+')
 		items = []
 		averages = []
 		x = 0
 		for vote in votes:
+			if selfpost.match(links[x]):
+				linky = u"http://news.ycombinator.com/%s" % links[x]
+				title = u'<a href="%s">%s<a>' % (linky, strip_tags(titles[x]))
+			else:
+				title = titles[x]
+
 			comm = strip_tags(comments[x]).split(' ')[0]
 			down = int(comm) if comm != "discuss" else 0
 			up = int(strip_tags(vote).split(' ')[0])
 
 			item = HNItem()
-			item['title'] = titles[x]
+			item['title'] = title
 			item['site'] = links[x]
 			item['vote'] = up
 			item['comment'] = down

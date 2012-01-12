@@ -17,9 +17,9 @@ header = u"""\
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
         <title>HN Confidence</title>
         <style>
-            body {font: 14px Helvetica, Arial, sans-serif;}
-            li {margin-bottom: 10px;}
-            a {color: #19558D; text-decoration:none;}
+            body {font: 15px Helvetica, Arial, sans-serif;}
+            li {margin-bottom: 11px;}
+            a {color: #000; text-decoration:none;}
             a:hover {text-decoration: underline;}
             span {color: #999;}
         </style>

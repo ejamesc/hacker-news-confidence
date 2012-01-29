@@ -19,9 +19,10 @@ header = u"""\
         <style>
             body {font: 15px Helvetica, Arial, sans-serif;}
             li {margin-bottom: 11px;}
+            ol {margin-bottom: 50px;}
             a {color: #000; text-decoration:none;}
             a:hover {text-decoration: underline;}
-            span {color: #999;}
+            span, .comm {color: #999;}
         </style>
     </head>
     <body>
@@ -40,7 +41,7 @@ class HNConfPipeline(object):
         self.file.write(header)
 
     def process_item(self, item, spider):
-        line = u"<li>%s <span>(%s votes | %s comments)</span></li>\n" % (item['title'], item['vote'], item['comment'])
+        line = u"<li>%s <span>(%s votes | <a class='comm' href='%s'>%s comments</a>)</span></li>\n" % (item['title'], item['vote'], item['commentlink'], item['comment'])
         self.file.write(line.encode('ascii', 'xmlcharrefreplace'))
         return item
 

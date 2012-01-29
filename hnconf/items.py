@@ -10,4 +10,5 @@ class HNItem(Item):
     site = Field()
     vote = Field()
     comment = Field()
+    commentlink = Field()
     score = Field()

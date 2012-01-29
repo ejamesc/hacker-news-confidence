@@ -43,6 +43,7 @@ class HNSpider(CrawlSpider):
 		votes = hxs.select("/html/body/center[1]/table[1]/tr[3]/td[1]/table[1]/tr/td[contains(concat(' ',@class,' '),' subtext ')]/span[1]").extract()
 		# returns <a> tags
 		comments = hxs.select("/html/body/center[1]/table[1]/tr[3]/td[1]/table[1]/tr/td[contains(concat(' ',@class,' '),' subtext ')]/a[2]").extract()
+		commentlinks = hxs.select("/html/body/center[1]/table[1]/tr[3]/td[1]/table[1]/tr/td[contains(concat(' ',@class,' '),' subtext ')]/a[2]/@href").extract()
 
 		selfpost = re.compile('^item\?id=\d+')
 		items = []
@@ -64,6 +65,7 @@ class HNSpider(CrawlSpider):
 			item['site'] = links[x]
 			item['vote'] = up
 			item['comment'] = down
+			item['commentlink'] = u"http://news.ycombinator.com/%s" % commentlinks[x]
 			item['score'] = confidence(up, down)
 			items.append(item)
 			x = x+1
